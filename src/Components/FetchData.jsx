@@ -1,13 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-const FetchData = () => {
-  return (
-    <>
-     <ul className='list_data_main'>
-        <h1 className='usefetch_heading'>Use Fetch Custom Hook</h1>
-     </ul>
-    </>
-  )
+const useFetch = (url) => {
+    const[data,setData]=useState();
+    useEffect(()=>{
+        fetch(url).then((res)=>res.json())
+            .then((data)=>setData(data))
+    },[])
+    return [data]
 }
 
-export default FetchData
+export default useFetch
