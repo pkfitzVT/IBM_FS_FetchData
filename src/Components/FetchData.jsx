@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react'
+// FetchData.jsx
+import React from 'react';
+import useFetch from './UseFetch';
 
-const useFetch = (url) => {
-    const[data,setData]=useState();
-    useEffect(()=>{
-        fetch(url).then((res)=>res.json())
-            .then((data)=>setData(data))
-    },[])
-    return [data]
+function FetchData() {
+    const [data] = useFetch('https://api.npoint.io/9045c260b1565daa9e15');
+
+    return (
+        <div>
+            <h1>Fetched Data</h1>
+            <pre>{JSON.stringify(data, null, 2)}</pre>
+        </div>
+    );
 }
 
-export default useFetch
+export default FetchData;
